@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">seminar04_1075</string>
+    <string name="desktop_pc">Desktop PC</string>
+    <string name="salveaz_calculator">Salvează Calculator</string>
+    <string name="laptop">Laptop</string>
+    <string name="garan_ie_extins_1_an">Garanție extinsă (+1 an)</string>
+    <string name="produs_nou_sigilat">Produs Nou (Sigilat)</string>
+    <string name="niciun_calculator_ad_ugat_momentan">Niciun calculator adăugat momentan.</string>
+    <string name="adaug_calculator">Adaugă Calculator</string>
+</resources>
