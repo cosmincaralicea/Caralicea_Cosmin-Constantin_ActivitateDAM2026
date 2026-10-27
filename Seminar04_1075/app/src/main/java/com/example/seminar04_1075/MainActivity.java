@@ -4,14 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvRezultat;
+    private final ArrayList<Calculator> listaCalculatoare = new ArrayList<>();
 
     private final ActivityResultLauncher<Intent> adaugaCalculatorLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                         Calculator calculatorPrimit = (Calculator) bundle.getSerializable(AddActivityCalculator.EXTRA_CALCULATOR);
 
                         if (calculatorPrimit != null) {
-                            Toast.makeText(this, "Salvat: " + calculatorPrimit.getModel(), Toast.LENGTH_LONG).show();
+                            listaCalculatoare.add(calculatorPrimit);
                             tvRezultat.setText(calculatorPrimit.toString());
                         }
                     }
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnClasic = findViewById(R.id.btn_clasic);
         Button btnAI = findViewById(R.id.btn_ai);
+        Button btnAfiseazaLista = findViewById(R.id.btn_afiseaza_lista);
         tvRezultat = findViewById(R.id.tv_rezultat);
 
         btnClasic.setOnClickListener(v -> {
@@ -46,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         btnAI.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddCalculatorAIActivity.class);
             adaugaCalculatorLauncher.launch(intent);
+        });
+
+        btnAfiseazaLista.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ListaCalculatoareActivity.class);
+            intent.putExtra("LISTA_CALCULATOARE", listaCalculatoare);
+            startActivity(intent);
         });
     }
 }

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,7 @@ public class AddCalculatorAIActivity extends AppCompatActivity {
     private Spinner marcaSp;
     private RatingBar performantaRb;
     private CheckBox esteNouCb;
+    private Switch garantieSw;
     private RadioGroup tipRg;
     private Button salveazaBtn;
 
@@ -33,6 +35,7 @@ public class AddCalculatorAIActivity extends AppCompatActivity {
         marcaSp = findViewById(R.id.marca_sp_ai);
         performantaRb = findViewById(R.id.performanta_rb_ai);
         esteNouCb = findViewById(R.id.esteNou_cb_ai);
+        garantieSw = findViewById(R.id.garantie_sw_ai);
         tipRg = findViewById(R.id.tip_rg_ai);
         salveazaBtn = findViewById(R.id.salveaza_btn_ai);
 
@@ -56,10 +59,11 @@ public class AddCalculatorAIActivity extends AppCompatActivity {
         String marca = marcaSp.getSelectedItem().toString();
         float performanta = performantaRb.getRating();
         boolean esteNou = esteNouCb.isChecked();
+        boolean areGarantie = garantieSw.isChecked();
 
         String tipSistem = (tipRg.getCheckedRadioButtonId() == R.id.desktop_rb_ai) ? "Desktop PC" : "Laptop";
 
-        Calculator calculator = new Calculator(model, pret, marca, performanta, esteNou, tipSistem);
+        Calculator calculator = new Calculator(model, pret, marca, performanta, esteNou, tipSistem, areGarantie);
 
         Intent intent = new Intent();
         Bundle bundle = new Bundle();

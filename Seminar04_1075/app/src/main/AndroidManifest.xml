@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".AddActivityCalculator" android:exported="false" />
         <activity android:name=".AddCalculatorAIActivity" android:exported="false" />
+        <activity android:name=".ListaCalculatoareActivity" />
     </application>
 
 </manifest>

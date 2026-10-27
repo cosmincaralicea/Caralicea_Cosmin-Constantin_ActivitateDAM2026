@@ -59,13 +59,14 @@ public class AddActivityCalculator extends AppCompatActivity {
         String marca = marcaSp.getSelectedItem().toString();
         float performanta = performantaRb.getRating();
         boolean esteNou = esteNouCb.isChecked();
+        boolean areGarantie = garantieSw.isChecked();
 
         String tipSistem = "Laptop";
         if (tipRg.getCheckedRadioButtonId() == R.id.desktop_rb) {
             tipSistem = "Desktop PC";
         }
 
-        Calculator calculator = new Calculator(model, pret, marca, performanta, esteNou, tipSistem);
+        Calculator calculator = new Calculator(model, pret, marca, performanta, esteNou, tipSistem, areGarantie);
 
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
