@@ -1,8 +1,9 @@
 package com.example.seminar04_1075;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Calculator implements Serializable {
+public class Calculator implements Parcelable {
     private String model;
     private double pret;
     private String marca;
@@ -19,6 +20,44 @@ public class Calculator implements Serializable {
         this.esteNou = esteNou;
         this.tipSistem = tipSistem;
         this.areGarantie = areGarantie;
+    }
+
+    protected Calculator(Parcel in) {
+        model = in.readString();
+        pret = in.readDouble();
+        marca = in.readString();
+        performanta = in.readFloat();
+        esteNou = in.readByte() != 0;
+        tipSistem = in.readString();
+        areGarantie = in.readByte() != 0;
+    }
+
+    public static final Creator<Calculator> CREATOR = new Creator<Calculator>() {
+        @Override
+        public Calculator createFromParcel(Parcel in) {
+            return new Calculator(in);
+        }
+
+        @Override
+        public Calculator[] newArray(int size) {
+            return new Calculator[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(model);
+        dest.writeDouble(pret);
+        dest.writeString(marca);
+        dest.writeFloat(performanta);
+        dest.writeByte((byte) (esteNou ? 1 : 0));
+        dest.writeString(tipSistem);
+        dest.writeByte((byte) (areGarantie ? 1 : 0));
     }
 
     public String getModel() { return model; }

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = result.getData().getExtras();
 
                     if (bundle != null) {
-                        Calculator calculatorPrimit = (Calculator) bundle.getSerializable(AddActivityCalculator.EXTRA_CALCULATOR);
+                        Calculator calculatorPrimit = bundle.getParcelable(AddActivityCalculator.EXTRA_CALCULATOR);
 
                         if (calculatorPrimit != null) {
                             listaCalculatoare.add(calculatorPrimit);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnAfiseazaLista.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ListaCalculatoareActivity.class);
-            intent.putExtra("LISTA_CALCULATOARE", listaCalculatoare);
+            intent.putParcelableArrayListExtra("LISTA_CALCULATOARE", listaCalculatoare);
             startActivity(intent);
         });
     }

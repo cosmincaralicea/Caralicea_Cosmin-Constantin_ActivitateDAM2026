@@ -43,6 +43,32 @@ public class AddActivityCalculator extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, marci);
         marcaSp.setAdapter(adapter);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra(EXTRA_CALCULATOR)) {
+            Calculator calc = intent.getParcelableExtra(EXTRA_CALCULATOR);
+            if (calc != null) {
+                modelEt.setText(calc.getModel());
+                pretEt.setText(String.valueOf(calc.getPret()));
+
+                for (int i = 0; i < marci.length; i++) {
+                    if (marci[i].equals(calc.getMarca())) {
+                        marcaSp.setSelection(i);
+                        break;
+                    }
+                }
+
+                performantaRb.setRating(calc.getPerformanta());
+                esteNouCb.setChecked(calc.isEsteNou());
+                garantieSw.setChecked(calc.isAreGarantie());
+
+                if ("Desktop PC".equals(calc.getTipSistem())) {
+                    tipRg.check(R.id.desktop_rb);
+                } else {
+                    tipRg.check(R.id.laptop_rb);
+                }
+            }
+        }
+
         salveazaBtn.setOnClickListener(v -> salveazaDate());
     }
 
@@ -70,7 +96,7 @@ public class AddActivityCalculator extends AppCompatActivity {
 
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(EXTRA_CALCULATOR, calculator);
+        bundle.putParcelable(EXTRA_CALCULATOR, calculator);
         intent.putExtras(bundle);
 
         setResult(RESULT_OK, intent);
