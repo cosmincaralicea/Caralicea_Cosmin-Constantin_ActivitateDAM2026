@@ -56,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
             intent.putParcelableArrayListExtra("LISTA_CALCULATOARE", listaCalculatoare);
             startActivity(intent);
         });
+
+        Button btnImagini = findViewById(R.id.btn_imagini);
+        btnImagini.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ImaginiActivity.class);
+            startActivity(intent);
+        });
     }
 }
