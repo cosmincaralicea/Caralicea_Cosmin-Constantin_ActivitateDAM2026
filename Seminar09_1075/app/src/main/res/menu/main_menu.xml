@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_vreme"
+        android:title="Verifica Vremea"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_despre"
+        android:title="Despre aplicatie"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_iesire"
+        android:title="Iesire"
+        app:showAsAction="never" />
+
+</menu>
